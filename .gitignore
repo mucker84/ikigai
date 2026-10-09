@@ -1,0 +1,13 @@
+# Lokální konfigurace a tajné klíče
+*.local.js
+*.local.json
+.env
+.env.*
+!.env.example
+
+# Zálohy a OS soubory
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+node_modules/

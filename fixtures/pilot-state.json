@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "userId": "usr_pilot_synthetic_01",
+    "ownerType": "anonymous",
+    "timeZone": "Europe/Prague",
+    "createdAt": "2026-10-09T08:00:00.000Z",
+    "updatedAt": "2026-10-14T08:00:00.000Z",
+    "dataSchemaVersion": "1.0.0",
+    "contentVersion": "2026-10-09"
+  },
+  "currentDayNumber": 5,
+  "activeHypothesisId": "hyp_struktura_01",
+  "experiences": [
+    {
+      "id": "exp_user_moment_01",
+      "userId": "usr_pilot_synthetic_01",
+      "promptQuestionId": "q_flow_moment",
+      "responseContent": "Pomáhal jsem kolegovi s přerovnáním chaotické tabulky do přehledného dashboardu.",
+      "isSkipped": false,
+      "recordedAt": "2026-10-09T08:05:00.000Z"
+    },
+    {
+      "id": "exp_user_drain_02",
+      "userId": "usr_pilot_synthetic_01",
+      "promptQuestionId": "q_drain_moment",
+      "responseContent": "Dvouhodinová porada bez agendy, kde se jen mluvilo a nic nerozhodlo.",
+      "isSkipped": false,
+      "recordedAt": "2026-10-09T08:06:00.000Z"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp_struktura_01",
+      "userId": "usr_pilot_synthetic_01",
+      "title": "Tvorba struktury pro druhé",
+      "description": "Zkoumat tvorbu jednoduchých systémů, které kolegům přinášejí řád a klid.",
+      "evidenceIds": ["exp_user_moment_01"],
+      "alternativeExplanation": "Může jít spíše o ocenění od kolegy než o samotnou strukturu.",
+      "status": "confirmed",
+      "createdAt": "2026-10-09T08:10:00.000Z",
+      "updatedAt": "2026-10-09T08:12:00.000Z"
+    }
+  ],
+  "plannedExperiments": [
+    {
+      "id": "plan_01_done",
+      "userId": "usr_pilot_synthetic_01",
+      "experimentId": "exp_01",
+      "hypothesisId": "hyp_struktura_01",
+      "variantId": "var_10min",
+      "targetDate": "2026-10-10",
+      "result": {
+        "status": "completed",
+        "reflection": {
+          "energy": "energized",
+          "notes": "Papír a tužka na 15 minut fungovaly skvěle, měl jsem radost z jasného výsledku.",
+          "reflectedAt": "2026-10-10T19:30:00.000Z"
+        },
+        "completedAt": "2026-10-10T19:30:00.000Z"
+      },
+      "createdAt": "2026-10-09T08:15:00.000Z",
+      "updatedAt": "2026-10-10T19:30:00.000Z"
+    },
+    {
+      "id": "plan_02_rescheduled",
+      "userId": "usr_pilot_synthetic_01",
+      "experimentId": "exp_02",
+      "hypothesisId": "hyp_struktura_01",
+      "targetDate": "2026-10-11",
+      "result": {
+        "status": "rescheduled",
+        "reason": "Nečekaný přesčas v práci, pokus vědomě přesunut na další dny."
+      },
+      "createdAt": "2026-10-10T19:35:00.000Z",
+      "updatedAt": "2026-10-11T20:00:00.000Z"
+    },
+    {
+      "id": "plan_03_pending",
+      "userId": "usr_pilot_synthetic_01",
+      "experimentId": "exp_03",
+      "hypothesisId": "hyp_struktura_01",
+      "targetDate": "2026-10-14",
+      "createdAt": "2026-10-13T20:00:00.000Z",
+      "updatedAt": "2026-10-13T20:00:00.000Z"
+    }
+  ],
+  "restEntries": [
+    {
+      "id": "rest_entry_01",
+      "userId": "usr_pilot_synthetic_01",
+      "date": "2026-10-12",
+      "note": "Vědomý odpočinek po náročném víkendu.",
+      "recordedAt": "2026-10-12T21:00:00.000Z"
+    }
+  ],
+  "weeklySummaries": [],
+  "visualMemories": [
+    {
+      "id": "mem_01_sketchpad",
+      "userId": "usr_pilot_synthetic_01",
+      "itemId": "item_sketchpad",
+      "title": "Náčrtník struktury",
+      "description": "Získán za první dokončený nákres procesu.",
+      "originExperimentId": "plan_01_done",
+      "unlockedAt": "2026-10-10T19:30:00.000Z"
+    }
+  ]
+}

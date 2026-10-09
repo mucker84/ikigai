@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quizes.online/iki/schemas/ai-output.schema.json",
+  "title": "AiDialogueOutput",
+  "description": "Schéma pro strukturovaný výstup AI průvodce v aplikaci IKI",
+  "type": "object",
+  "required": [
+    "replyMessage",
+    "isTerminal"
+  ],
+  "properties": {
+    "replyMessage": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000,
+      "description": "Věcná odpověď AI průvodce v češtině, tykání, bez klišé a patosu"
+    },
+    "isTerminal": {
+      "type": "boolean",
+      "description": "True pokud je konverzace v tomto kroku uzavřena a uživatel má jít provést pokus do reality"
+    },
+    "generatedHypotheses": {
+      "type": "array",
+      "maxItems": 4,
+      "description": "Pracovní hypotézy směrů formulované z reálných zkušeností uživatele",
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "description",
+          "evidenceQuotes"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100,
+            "description": "Stručný název směru"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 300,
+            "description": "Popis směru a co má uživatel zkoumat"
+          },
+          "evidenceQuotes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "description": "Konkrétní citace uživatelových výroků jako důkaz pro tuto hypotézu"
+          },
+          "alternativeExplanation": {
+            "type": "string",
+            "maxLength": 300,
+            "description": "Možné alternativní nebo protichůdné vysvětlení"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "suggestedExperimentIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Seznam doporučených ID pokusů z katalogu"
+    },
+    "confidenceNote": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Poznámka o míře jistoty AI (např. 'Zatím máme málo dat, ber to jako pracovní tip')"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQTD6TPJ7R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QQTD6TPJ7R');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ikigai Semafor (Cloud)</title>
+    <meta name="description" content="Simple ADHD tracker utilizing Ikigai principles for long-term pattern recognition. Cloud Sync enabled.">
+    <!-- PWA capable metadata -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom Styles for Mobile-App Feel */
+        body {
+            background-color: #FDFCF8; /* Warm off-white */
+            color: #4A453E; /* Soft dark brown-grey */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Mobile optimized max width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            width: 100%; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #D97706; /* Amber-600 */
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #E5E7EB;
+            border-radius: 2px;
+        }
+
+        /* Ikigai Venn Diagram CSS Animation */
+        .venn-circle {
+            transition: all 0.5s ease-in-out;
+            mix-blend-mode: multiply;
+        }
+
+        /* Utility for hiding scrollbar but keeping functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Button Active States */
+        .btn-press:active {
+            transform: scale(0.95);
+        }
+        
+        .tab-active {
+            color: #D97706; /* Amber 600 */
+            border-bottom: 2px solid #D97706;
+        }
+        .tab-inactive {
+            color: #9CA3AF; /* Gray 400 */
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+
+    <!-- Top Bar -->
+    <header class="flex-none p-4 bg-[#F5F2EA] shadow-sm z-10 flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-bold tracking-tight text-gray-800">Ikigai <span class="text-amber-600">Semafor</span></h1>
+            <p class="text-xs text-gray-500">Cloud Sync Active ☁️</p>
+        </div>
+        <div class="flex space-x-2">
+            <!-- Hidden by default until auth logic confirms user is owner/admin or for demo purposes -->
+            <button onclick="app.generateDemoData()" class="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded text-gray-600 transition">
+                Demo
+            </button>
+            <button onclick="app.clearData()" class="text-xs bg-red-100 hover:bg-red-200 px-2 py-1 rounded text-red-600 transition">
+                Reset
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area (Scrollable) -->
+    <main class="flex-grow overflow-y-auto no-scrollbar relative bg-[#FDFCF8]">
+        
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="absolute inset-0 bg-white z-50 flex items-center justify-center bg-opacity-90">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-amber-600 mx-auto mb-2"></div>
+                <p class="text-xs text-gray-500" id="loading-text">Připojuji se k mozku...</p>
+            </div>
+        </div>
+        
+        <!-- SECTION: TEĎ (Short-term Tracker) -->
+        <div id="tab-now" class="p-6 pb-24 space-y-8 max-w-md mx-auto transition-opacity duration-300">
+            
+            <div class="space-y-2 text-center">
+                <h2 class="text-2xl font-light">Jak to jde <span class="font-bold">právě teď?</span></h2>
+                <p class="text-sm text-gray-400">Rychlý check-in pro tvůj mozek.</p>
+            </div>
+
+            <!-- 1. ENERGIE & NÁLADA -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-6">
+                
+                <!-- Energie -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <label class="font-semibold text-sm uppercase tracking-wide text-gray-500">Energie ⚡</label>
+                        <span id="val-energy" class="font-bold text-amber-600">3/5</span>
+                    </div>
+                    <input type="range" id="input-energy" min="1" max="5" value="3" step="1" oninput="ui.updateSliders()">
+                    <div class="flex justify-between text-xs text-gray-400 mt-1">
+                        <span>Zombie</span>
+                        <span>Hyper</span>
+                    </div>
+                </div>
+
+                <!-- Nálada -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <label class="font-semibold text-sm uppercase tracking-wide text-gray-500">Nálada 🎭</label>
+                        <span id="val-mood" class="font-bold text-amber-600">3/5</span>
+                    </div>
+                    <input type="range" id="input-mood" min="1" max="5" value="3" step="1" oninput="ui.updateSliders()">
+                    <div class="flex justify-between text-xs text-gray-400 mt-1">
+                        <span>Prázdnota</span>
+                        <span>Euforie</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. STAV SOUSTŘEDĚNÍ (SEMAFOR) -->
+            <div class="space-y-3">
+                <label class="block text-center font-semibold text-sm uppercase tracking-wide text-gray-500">Stav Focusu</label>
+                <div class="grid grid-cols-3 gap-3 h-24">
+                    <button onclick="ui.selectFocus('blocked')" id="btn-blocked" class="btn-press rounded-xl border-2 border-red-100 bg-red-50 text-red-400 hover:bg-red-100 flex flex-col items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-red-300">
+                        <span class="text-2xl mb-1">🔴</span>
+                        <span class="text-xs font-bold">BLOCKED</span>
+                    </button>
+                    <button onclick="ui.selectFocus('distracted')" id="btn-distracted" class="btn-press rounded-xl border-2 border-amber-100 bg-amber-50 text-amber-400 hover:bg-amber-100 flex flex-col items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-amber-300">
+                        <span class="text-2xl mb-1">🟡</span>
+                        <span class="text-xs font-bold">DISTRACTED</span>
+                    </button>
+                    <button onclick="ui.selectFocus('flow')" id="btn-flow" class="btn-press rounded-xl border-2 border-emerald-100 bg-emerald-50 text-emerald-400 hover:bg-emerald-100 flex flex-col items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                        <span class="text-2xl mb-1">🟢</span>
+                        <span class="text-xs font-bold">FLOW</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. KONTEXT (TAGY) -->
+            <div class="space-y-3">
+                <label class="block text-center font-semibold text-sm uppercase tracking-wide text-gray-500">Co se děje? (Triggery/Boosty)</label>
+                <div class="flex flex-wrap gap-2 justify-center" id="tags-container">
+                    <!-- Tags rendered by JS -->
+                </div>
+            </div>
+
+            <!-- SAVE BUTTON -->
+            <div class="pt-4">
+                <button onclick="app.saveLog()" class="w-full btn-press bg-gray-800 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-700 transition flex items-center justify-center gap-2">
+                    <span>Uložit Cloud Záznam</span>
+                    <span>☁️</span>
+                </button>
+            </div>
+            
+            <div class="text-center">
+                 <p class="text-xs text-gray-400 italic" id="last-saved-msg">Načítám historii...</p>
+                 <p class="text-[10px] text-gray-300 mt-1" id="user-id-display">ID: ...</p>
+            </div>
+        </div>
+
+        <!-- SECTION: SMĚR (Ikigai / Long-term) -->
+        <div id="tab-direction" class="hidden p-6 pb-24 space-y-8 max-w-md mx-auto">
+            
+            <div class="space-y-2 text-center">
+                <h2 class="text-2xl font-light">Tvůj <span class="font-bold">Ikigai Kompas</span></h2>
+                <p class="text-sm text-gray-400">Analýza dat z cloudu. Hledáme průnik.</p>
+            </div>
+
+            <!-- IKIGAI VISUALIZATION (Chart.js Radar) -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                <h3 class="text-center font-bold text-gray-700 mb-4 text-sm uppercase">Rovnováha Života</h3>
+                <div class="chart-container">
+                    <canvas id="ikigaiChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4">Graf ukazuje sílu jednotlivých oblastí na základě tvých denních záznamů.</p>
+            </div>
+
+            <!-- INSIGHT CARDS -->
+            <div class="space-y-4" id="insights-container">
+                <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800 text-sm">Synchronizace...</h4>
+                    <p class="text-xs text-blue-600 mt-1">Čekám na data z databáze.</p>
+                </div>
+            </div>
+
+            <!-- VENN DIAGRAM ABSTRACT REPRESENTATION -->
+            <div class="bg-[#FDFCF8] p-4 rounded-2xl relative h-64 flex items-center justify-center overflow-hidden border border-gray-100">
+                <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+                    <h3 class="text-4xl font-black text-gray-200 uppercase tracking-widest rotate-[-15deg]">IKIGAI</h3>
+                </div>
+                <!-- Circle 1: Love (Top) -->
+                <div id="circle-love" class="venn-circle absolute w-24 h-24 bg-red-400 rounded-full opacity-60 top-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center text-white text-xs font-bold">LOVE</div>
+                <!-- Circle 2: Good At (Right) -->
+                <div id="circle-good" class="venn-circle absolute w-24 h-24 bg-emerald-400 rounded-full opacity-60 top-1/2 right-4 transform -translate-y-1/2 flex items-center justify-center text-white text-xs font-bold">SKILL</div>
+                <!-- Circle 3: Paid (Bottom) -->
+                <div id="circle-paid" class="venn-circle absolute w-24 h-24 bg-amber-400 rounded-full opacity-60 bottom-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center text-white text-xs font-bold">PAID</div>
+                <!-- Circle 4: Needs (Left) -->
+                <div id="circle-need" class="venn-circle absolute w-24 h-24 bg-blue-400 rounded-full opacity-60 top-1/2 left-4 transform -translate-y-1/2 flex items-center justify-center text-white text-xs font-bold">NEED</div>
+                
+                <!-- Center (Result) -->
+                <div class="absolute z-10 bg-white bg-opacity-90 rounded-full p-2 shadow-sm">
+                    <span class="text-xs font-bold text-gray-800">Ty</span>
+                </div>
+            </div>
+
+             <!-- STATS SUMMARY -->
+             <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white p-3 rounded-xl border border-gray-100 text-center">
+                    <div class="text-2xl font-bold text-gray-800" id="stat-entries">0</div>
+                    <div class="text-xs text-gray-400 uppercase">Záznamů</div>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-gray-100 text-center">
+                    <div class="text-2xl font-bold text-gray-800" id="stat-streak">0</div>
+                    <div class="text-xs text-gray-400 uppercase">Dní v řadě</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: HISTORIE (Log List) -->
+        <div id="tab-history" class="hidden p-6 pb-24 space-y-6 max-w-md mx-auto">
+            <div class="space-y-2 text-center">
+                <h2 class="text-2xl font-light">Tvoje <span class="font-bold">Historie</span></h2>
+                <p class="text-sm text-gray-400">Přehled všech uložených momentů z cloudu.</p>
+            </div>
+
+            <!-- History List Container -->
+            <div id="history-list-container" class="space-y-3">
+                <p class="text-center text-gray-400 text-sm py-10">Načítám data...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="flex-none bg-white border-t border-gray-200 pb-safe">
+        <div class="grid grid-cols-3 h-16">
+            <button onclick="ui.switchTab('now')" id="tab-btn-now" class="tab-active flex flex-col items-center justify-center transition focus:outline-none">
+                <span class="text-lg">⏱️</span>
+                <span class="text-xs font-medium mt-1">TEĎ</span>
+            </button>
+            <button onclick="ui.switchTab('direction')" id="tab-btn-direction" class="tab-inactive flex flex-col items-center justify-center transition focus:outline-none">
+                <span class="text-lg">🧭</span>
+                <span class="text-xs font-medium mt-1">SMĚR</span>
+            </button>
+             <button onclick="ui.switchTab('history')" id="tab-btn-history" class="tab-inactive flex flex-col items-center justify-center transition focus:outline-none">
+                <span class="text-lg">📋</span>
+                <span class="text-xs font-medium mt-1">HISTORIE</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full shadow-xl opacity-0 transition-opacity duration-300 pointer-events-none z-50 flex items-center gap-2">
+        <span>✅</span>
+        <span class="font-medium text-sm">Uloženo v cloudu!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, doc, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- FIREBASE CONFIGURATION ---
+        // POKUD TO CHCETE NAHRÁT NA VLASTNÍ SERVER:
+        // 1. Vytvořte si projekt na console.firebase.google.com
+        // 2. Zapněte Firestore Database a Authentication (Anonymous provider)
+        // 3. Zkopírujte config objekt sem místo toho stávajícího.
+        
+        let firebaseConfig;
+        let appId = 'ikigai-semafor'; // Default ID
+        
+        if (typeof __firebase_config !== 'undefined') {
+            firebaseConfig = JSON.parse(__firebase_config);
+            if (typeof __app_id !== 'undefined') appId = __app_id;
+        } else {
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // POZOR: TOTO JE MÍSTO, KDE MUSÍTE VLOŽIT VLASTNÍ ÚDAJE, POKUD
+            // VÁM APLIKACE PÍŠE CHYBU NEBO JI SPOUŠTÍTE U SEBE.
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            firebaseConfig = {
+                apiKey: "PASTE_YOUR_API_KEY_HERE",
+                authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+                projectId: "YOUR_PROJECT_ID",
+                storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+                messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+                appId: "YOUR_APP_ID",
+                measurementId: "YOUR_MEASUREMENT_ID"
+            };
+        }
+
+        let appInstance, auth, db, user;
+        
+        // --- DATA STORE ---
+        const tagsList = [
+            { id: 'comm', label: '🗣️ Komunikace', type: 'social' },
+            { id: 'money', label: '💰 Finance', type: 'resource' },
+            { id: 'digi', label: '📱 Digitál', type: 'distraction' },
+            { id: 'body', label: '🧠 Tělo/Mysl', type: 'health' },
+            { id: 'env', label: '🌍 Prostředí', type: 'env' },
+            { id: 'work', label: '💼 Práce', type: 'work' },
+            { id: 'hobby', label: '🎨 Hobby', type: 'fun' }
+        ];
+
+        // State
+        let state = {
+            energy: 3,
+            mood: 3,
+            focus: null, 
+            selectedTags: [],
+            history: [] // Now synced from Firebase
+        };
+
+        // --- CHART INSTANCE ---
+        let ikigaiChartInstance = null;
+
+        // --- APP LOGIC ---
+        const app = {
+            init: async () => {
+                ui.renderTags();
+                ui.updateSliders();
+                
+                // --- DETEKCE CHYBĚJÍCÍ KONFIGURACE ---
+                if (firebaseConfig.apiKey === "PASTE_YOUR_API_KEY_HERE") {
+                    const errorMsg = "CHYBA: Chybí konfigurace Firebase. Pro spuštění mimo preview musíte vložit vlastní API klíče do zdrojového kódu (kolem řádku 280).";
+                    console.error(errorMsg);
+                    alert(errorMsg);
+                    document.getElementById('loading-overlay').innerHTML = `
+                        <div class="p-6 text-center max-w-sm">
+                            <div class="text-red-600 font-bold text-xl mb-2">Chybí Databáze ❌</div>
+                            <p class="text-sm text-gray-600">Aplikace neví, kam ukládat data.</p>
+                            <p class="text-xs text-gray-400 mt-4 border-t pt-2">Otevřete kód a nahraďte 'PASTE_YOUR_API_KEY_HERE' vašimi údaji z Firebase Console.</p>
+                        </div>
+                    `;
+                    return; // Stop execution
+                }
+
+                try {
+                    appInstance = initializeApp(firebaseConfig);
+                    auth = getAuth(appInstance);
+                    db = getFirestore(appInstance);
+                    
+                    // Auth Logic
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                    onAuthStateChanged(auth, (u) => {
+                        if (u) {
+                            user = u;
+                            document.getElementById('loading-overlay').classList.add('hidden');
+                            document.getElementById('user-id-display').innerText = `ID: ${user.uid.substring(0,6)}...`;
+                            app.subscribeToData();
+                        }
+                    });
+
+                } catch (e) {
+                    console.error("Firebase init error:", e);
+                    alert("Chyba inicializace: Zkontrolujte údaje v konfiguraci (Console log).");
+                    document.getElementById('loading-overlay').innerHTML = `
+                         <div class="p-6 text-center max-w-sm">
+                            <div class="text-red-600 font-bold text-xl mb-2">Chyba Připojení</div>
+                            <p class="text-xs text-gray-500">${e.message}</p>
+                        </div>
+                    `;
+                }
+            },
+
+            subscribeToData: () => {
+                if (!user) return;
+                
+                // Construct path: /artifacts/{appId}/users/{userId}/logs
+                const q = query(collection(db, 'artifacts', appId, 'users', user.uid, 'logs'));
+                
+                onSnapshot(q, (snapshot) => {
+                    const logs = [];
+                    snapshot.forEach((doc) => {
+                        logs.push({ id: doc.id, ...doc.data() });
+                    });
+                    
+                    // Sort locally because compound queries require indexes we might not have yet
+                    logs.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    
+                    state.history = logs;
+                    
+                    // Update UI immediately based on new data
+                    ui.updateLastSaved();
+                    if (!document.getElementById('tab-direction').classList.contains('hidden')) analytics.updateDashboard();
+                    if (!document.getElementById('tab-history').classList.contains('hidden')) ui.renderHistory();
+                    
+                }, (error) => {
+                    console.error("Error fetching data: ", error);
+                });
+            },
+
+            saveLog: async () => {
+                if (!state.focus) {
+                    app.showToast('⚠️ Vyber prosím stav Focusu (Semafor)');
+                    return;
+                }
+                if (!user) {
+                    app.showToast('❌ Nejste připojeni k cloudu');
+                    return;
+                }
+
+                const entry = {
+                    date: new Date().toISOString(),
+                    energy: parseInt(state.energy),
+                    mood: parseInt(state.mood),
+                    focus: state.focus,
+                    tags: [...state.selectedTags]
+                };
+
+                try {
+                    await addDoc(collection(db, 'artifacts', appId, 'users', user.uid, 'logs'), entry);
+                    app.showToast('✅ Uloženo v cloudu! +10 XP');
+                    ui.resetForm();
+                } catch (e) {
+                    console.error("Error adding doc: ", e);
+                    app.showToast('❌ Chyba ukládání');
+                }
+            },
+
+            generateDemoData: async () => {
+                if (!user) return;
+                const batch = writeBatch(db);
+                const colRef = collection(db, 'artifacts', appId, 'users', user.uid, 'logs');
+                
+                const foci = ['blocked', 'distracted', 'flow', 'flow', 'distracted'];
+                
+                for (let i = 0; i < 10; i++) { // Generate fewer for batch limit safety in demo
+                    const focus = foci[Math.floor(Math.random() * foci.length)];
+                    let mood = Math.floor(Math.random() * 5) + 1;
+                    let energy = Math.floor(Math.random() * 5) + 1;
+                    if (focus === 'flow') { mood = Math.max(3, mood); energy = Math.max(3, energy); }
+                    if (focus === 'blocked') { mood = Math.min(3, mood); }
+
+                    const entryTags = [];
+                    if (Math.random() > 0.5) entryTags.push('comm');
+                    if (Math.random() > 0.7) entryTags.push('money');
+
+                    const newDocRef = doc(colRef);
+                    batch.set(newDocRef, {
+                        date: new Date(Date.now() - (i * 86400000)).toISOString(),
+                        energy,
+                        mood,
+                        focus,
+                        tags: entryTags
+                    });
+                }
+                
+                try {
+                    await batch.commit();
+                    app.showToast('🚀 Demo data odeslána do cloudu');
+                } catch(e) {
+                    console.error("Batch error", e);
+                }
+            },
+
+            clearData: async () => {
+                if(!confirm("Opravdu smazat všechna data z cloudu?")) return;
+                if (!user) return;
+                
+                // Firestore delete needs to happen doc by doc or via cloud function
+                // For client side simple delete, we fetch and delete. Not efficient for huge data but ok for personal tracker.
+                state.history.forEach(async (item) => {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'logs', item.id));
+                });
+                
+                app.showToast('🗑️ Požadavek na smazání odeslán');
+            },
+
+            showToast: (msg) => {
+                const toast = document.getElementById('toast');
+                toast.innerHTML = `<span>${msg}</span>`;
+                toast.classList.remove('opacity-0');
+                toast.classList.remove('translate-y-4');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0');
+                }, 3000);
+            }
+        };
+
+        // --- UI LOGIC ---
+        const ui = {
+            renderTags: () => {
+                const container = document.getElementById('tags-container');
+                container.innerHTML = tagsList.map(tag => `
+                    <button 
+                        onclick="window.ui.toggleTag('${tag.id}')" 
+                        id="tag-${tag.id}"
+                        class="px-3 py-2 rounded-full border border-gray-200 bg-white text-xs font-medium text-gray-600 transition hover:bg-gray-50 active:bg-gray-100 select-none"
+                    >
+                        ${tag.label}
+                    </button>
+                `).join('');
+            },
+
+            updateSliders: () => {
+                const eVal = document.getElementById('input-energy').value;
+                const mVal = document.getElementById('input-mood').value;
+                state.energy = eVal;
+                state.mood = mVal;
+                document.getElementById('val-energy').innerText = eVal + '/5';
+                document.getElementById('val-mood').innerText = mVal + '/5';
+            },
+
+            selectFocus: (type) => {
+                state.focus = type;
+                ['blocked', 'distracted', 'flow'].forEach(t => {
+                    const btn = document.getElementById(`btn-${t}`);
+                    btn.classList.remove('ring-4', 'ring-offset-2');
+                    btn.classList.add('opacity-60', 'scale-95');
+                    btn.classList.remove('opacity-100', 'scale-100');
+                });
+                const sel = document.getElementById(`btn-${type}`);
+                sel.classList.remove('opacity-60', 'scale-95');
+                sel.classList.add('opacity-100', 'scale-100', 'ring-4', 'ring-offset-2');
+                if (type === 'blocked') sel.classList.add('ring-red-200');
+                if (type === 'distracted') sel.classList.add('ring-amber-200');
+                if (type === 'flow') sel.classList.add('ring-emerald-200');
+            },
+
+            toggleTag: (id) => {
+                const btn = document.getElementById(`tag-${id}`);
+                const idx = state.selectedTags.indexOf(id);
+                if (idx > -1) {
+                    state.selectedTags.splice(idx, 1);
+                    btn.classList.remove('bg-gray-800', 'text-white', 'border-gray-800');
+                    btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+                } else {
+                    state.selectedTags.push(id);
+                    btn.classList.add('bg-gray-800', 'text-white', 'border-gray-800');
+                    btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+                }
+            },
+
+            resetForm: () => {
+                state.energy = 3;
+                state.mood = 3;
+                state.focus = null;
+                state.selectedTags = [];
+                document.getElementById('input-energy').value = 3;
+                document.getElementById('input-mood').value = 3;
+                ui.updateSliders();
+                ['blocked', 'distracted', 'flow'].forEach(t => {
+                    const btn = document.getElementById(`btn-${t}`);
+                    btn.classList.remove('ring-4', 'ring-offset-2', 'opacity-60', 'scale-95', 'opacity-100', 'scale-100');
+                });
+                ui.renderTags(); 
+            },
+
+            updateLastSaved: () => {
+                const el = document.getElementById('last-saved-msg');
+                if (state.history.length === 0) {
+                    el.innerText = "Zatím žádný záznam v cloudu.";
+                    return;
+                }
+                const last = state.history[state.history.length - 1];
+                const date = new Date(last.date);
+                el.innerText = `Poslední cloud záznam: ${date.toLocaleDateString()} ${date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            },
+
+            renderHistory: () => {
+                const container = document.getElementById('history-list-container');
+                if (state.history.length === 0) {
+                    container.innerHTML = `<p class="text-center text-gray-400 text-sm py-10">Zatím žádné záznamy v cloudu.</p>`;
+                    return;
+                }
+                const reversedHistory = [...state.history].reverse();
+                container.innerHTML = reversedHistory.map(item => {
+                    const date = new Date(item.date);
+                    const formattedDate = date.toLocaleDateString('cs-CZ');
+                    const formattedTime = date.toLocaleTimeString('cs-CZ', {hour: '2-digit', minute:'2-digit'});
+                    
+                    let focusIcon = '', focusClass = '', focusText = '';
+                    if (item.focus === 'blocked') { focusIcon = '🔴'; focusClass = 'bg-red-50 border-red-100 text-red-600'; focusText = 'Blocked'; }
+                    if (item.focus === 'distracted') { focusIcon = '🟡'; focusClass = 'bg-amber-50 border-amber-100 text-amber-600'; focusText = 'Distracted'; }
+                    if (item.focus === 'flow') { focusIcon = '🟢'; focusClass = 'bg-emerald-50 border-emerald-100 text-emerald-600'; focusText = 'Flow'; }
+
+                    const tagsHtml = item.tags.map(tagId => {
+                        const tObj = tagsList.find(t => t.id === tagId);
+                        return tObj ? `<span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-[10px]">${tObj.label}</span>` : '';
+                    }).join('');
+
+                    return `
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-2">
+                            <div class="flex justify-between items-center pb-2 border-b border-gray-50">
+                                <div><span class="font-bold text-gray-700 text-sm">${formattedDate}</span><span class="text-xs text-gray-400 ml-1">${formattedTime}</span></div>
+                                <div class="flex items-center gap-1 px-2 py-1 rounded-lg border ${focusClass}"><span class="text-xs">${focusIcon}</span><span class="text-[10px] font-bold uppercase">${focusText}</span></div>
+                            </div>
+                            <div class="flex items-center gap-4 py-1">
+                                <div class="flex flex-col"><span class="text-[10px] text-gray-400 uppercase tracking-wide">Energie</span><div class="flex items-center gap-1"><span class="font-bold text-amber-600 text-sm">${item.energy}/5</span><div class="w-12 h-1.5 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500" style="width: ${(item.energy/5)*100}%"></div></div></div></div>
+                                <div class="flex flex-col"><span class="text-[10px] text-gray-400 uppercase tracking-wide">Nálada</span><div class="flex items-center gap-1"><span class="font-bold text-blue-600 text-sm">${item.mood}/5</span><div class="w-12 h-1.5 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-blue-500" style="width: ${(item.mood/5)*100}%"></div></div></div></div>
+                            </div>
+                            ${tagsHtml ? `<div class="flex flex-wrap gap-1 mt-1 pt-2 border-t border-gray-50 border-dashed">${tagsHtml}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
+            },
+
+            switchTab: (tabName) => {
+                const tabs = ['now', 'direction', 'history'];
+                tabs.forEach(t => {
+                    const el = document.getElementById(`tab-${t}`);
+                    const btn = document.getElementById(`tab-btn-${t}`);
+                    if (t === tabName) {
+                        el.classList.remove('hidden');
+                        btn.className = 'tab-active flex flex-col items-center justify-center transition focus:outline-none';
+                    } else {
+                        el.classList.add('hidden');
+                        btn.className = 'tab-inactive flex flex-col items-center justify-center transition focus:outline-none';
+                    }
+                });
+                if (tabName === 'direction') analytics.updateDashboard();
+                if (tabName === 'history') ui.renderHistory();
+            }
+        };
+
+        // --- ANALYTICS ---
+        const analytics = {
+            calculateScores: () => {
+                let scores = { love: 0, goodAt: 0, paid: 0, needs: 0 };
+                state.history.forEach(log => {
+                    if (log.mood >= 4 && log.focus === 'flow') scores.love += 1;
+                    if (log.focus === 'flow' && log.energy >= 3) scores.goodAt += 1;
+                    if (log.tags.includes('money') && log.focus !== 'blocked') scores.paid += 1;
+                    else if (log.tags.includes('work') && log.focus !== 'blocked') scores.paid += 0.5;
+                    if (log.tags.includes('comm') || log.tags.includes('env')) scores.needs += 1;
+                });
+                return scores;
+            },
+            getStreak: () => { return state.history.length; }, // simplified
+            updateDashboard: () => {
+                const scores = analytics.calculateScores();
+                document.getElementById('stat-entries').innerText = state.history.length;
+                document.getElementById('stat-streak').innerText = analytics.getStreak();
+                analytics.renderChart(scores);
+                analytics.updateVennVisuals(scores);
+                analytics.generateInsights(scores);
+            },
+            renderChart: (scores) => {
+                const ctx = document.getElementById('ikigaiChart').getContext('2d');
+                if (ikigaiChartInstance) ikigaiChartInstance.destroy();
+                ikigaiChartInstance = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Co Miluji', 'Dovednosti', 'Finance', 'Poslání'],
+                        datasets: [{
+                            label: 'Ikigai Skóre',
+                            data: [scores.love, scores.goodAt, scores.paid, scores.needs],
+                            backgroundColor: 'rgba(217, 119, 6, 0.2)',
+                            borderColor: 'rgba(217, 119, 6, 1)',
+                            pointBackgroundColor: 'rgba(217, 119, 6, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(217, 119, 6, 1)'
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        elements: { line: { borderWidth: 3 } },
+                        scales: { r: { angleLines: { display: true }, suggestedMin: 0, suggestedMax: 5 } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            },
+            updateVennVisuals: (scores) => {
+                const max = Math.max(scores.love, scores.goodAt, scores.paid, scores.needs, 1);
+                const baseSize = 6; 
+                const scaleFactor = 6;
+                const setSize = (id, score) => {
+                    const el = document.getElementById(id);
+                    const size = baseSize + ((score / max) * scaleFactor);
+                    el.style.width = `${size}rem`;
+                    el.style.height = `${size}rem`;
+                    el.style.opacity = 0.3 + ((score / max) * 0.4); 
+                };
+                setSize('circle-love', scores.love);
+                setSize('circle-good', scores.goodAt);
+                setSize('circle-paid', scores.paid);
+                setSize('circle-need', scores.needs);
+            },
+            generateInsights: (scores) => {
+                const container = document.getElementById('insights-container');
+                let html = '';
+                if (scores.love > 2 && scores.paid < scores.love / 2) {
+                    html += `<div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg"><h4 class="font-bold text-yellow-800 text-sm">💡 Monetizační příležitost</h4><p class="text-xs text-yellow-700 mt-1">Máš spoustu energie v tom, co miluješ. Zkus příští měsíc najít způsob, jak za tyto aktivity dostat zaplaceno.</p></div>`;
+                }
+                if (scores.goodAt > 3 && scores.love < scores.goodAt / 2) {
+                    html += `<div class="p-4 bg-red-50 border-l-4 border-red-400 rounded-r-lg"><h4 class="font-bold text-red-800 text-sm">⚠️ Riziko vyhoření</h4><p class="text-xs text-red-700 mt-1">Jsi v něčem efektivní (Skill), ale chybí ti tam radost (Love). Pozor, aby se z toho nestala jen povinnost.</p></div>`;
+                }
+                if (scores.love > 2 && scores.paid > 2 && scores.goodAt > 2 && scores.needs > 2) {
+                    html += `<div class="p-4 bg-emerald-50 border-l-4 border-emerald-400 rounded-r-lg"><h4 class="font-bold text-emerald-800 text-sm">🌟 Ikigai se blíží!</h4><p class="text-xs text-emerald-700 mt-1">Máš skvělou rovnováhu ve všech oblastech. Jen tak dál!</p></div>`;
+                }
+                if (html === '') {
+                     html = `<div class="p-4 bg-gray-50 border-l-4 border-gray-400 rounded-r-lg"><h4 class="font-bold text-gray-800 text-sm">🔎 Pozoruji tvá data...</h4><p class="text-xs text-gray-600 mt-1">Pokračuj v zaznamenávání. Brzy ti řeknu víc o tvých vzorcích chování.</p></div>`;
+                }
+                container.innerHTML = html;
+            }
+        };
+
+        // Bind global functions for HTML buttons
+        window.app = app;
+        window.ui = ui;
+
+        // Init App
+        app.init();
+    </script>
+</body>
+</html>
