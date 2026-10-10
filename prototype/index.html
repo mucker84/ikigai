@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IKI — Hravý průvodce objevováním smyslu (Prototyp)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app-container">
+    
+    <!-- Notifikační lišta (např. po uložení nebo offline stavu) -->
+    <div id="notification-banner" class="notification-banner" role="status" aria-live="polite">
+      <span id="notification-text">Záznam uložen do deníku dílny.</span>
+      <button id="btn-close-notification" class="btn-icon" style="color:#FFF; background:none; border:none; padding:2px;" aria-label="Zavřít oznámení">✕</button>
+    </div>
+
+    <!-- Horní lišta Dílny -->
+    <header class="workshop-header">
+      <div class="brand">
+        <div class="brand-icon">IKI</div>
+        <div>
+          <h1 class="brand-title" style="font-size:16px; margin:0;">Dílna průzkumníka</h1>
+          <div class="brand-subtitle">Kaizen mikro-pokusy</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-reset-state" class="btn-icon" title="Resetovat ukázkový stav" aria-label="Resetovat stav">🔄 Reset</button>
+      </div>
+    </header>
+
+    <!-- Scéna s průvodcem a dnem -->
+    <section class="workshop-scene" aria-label="Stav dílny">
+      <div class="explorer-avatar">
+        <div class="avatar-badge" id="avatar-icon">🧭</div>
+        <div class="explorer-speech" id="explorer-speech-bubble">
+          Vítej v dílně. Dnes je skvělý den na malý pokus.
+        </div>
+      </div>
+      <div class="day-badge" id="day-badge-display">Den 1 / 14</div>
+    </section>
+
+    <!-- OBRAZOVKA 1: Úvodní rozhovor (Onboarding) -->
+    <main id="screen-dialogue" class="screen active" aria-labelledby="heading-dialogue">
+      <h2 id="heading-dialogue">První rozhovor v dílně</h2>
+      <p class="subtitle">Žádný složitý test. Jen 2 konkrétní vzpomínky z poslední doby.</p>
+
+      <div class="dialogue-history" id="chat-messages" role="log" aria-live="polite">
+        <!-- Zprávy se vkládají přes JS -->
+      </div>
+
+      <div class="dialogue-input-area" id="chat-input-container">
+        <textarea id="chat-user-input" class="chat-input" placeholder="Napiš svou odpověď (1–2 věty)..." aria-label="Tvoje odpověď"></textarea>
+        <button id="btn-send-message" class="btn-primary">Odeslat odpověď ↵</button>
+        <button id="btn-skip-question" class="btn-secondary">Přeskočit tuto otázku</button>
+      </div>
+    </main>
+
+    <!-- OBRAZOVKA 2: Mapa možných směrů (Hypotheses) -->
+    <section id="screen-directions" class="screen" aria-labelledby="heading-directions">
+      <h2 id="heading-directions">Možné směry průzkumu</h2>
+      <p class="subtitle">Na základě tvých odpovědí se rýsují tyto 3 pracovní směry:</p>
+
+      <div id="directions-list" style="display:flex; flex-direction:column; gap:12px;">
+        <!-- Karty směrů se generují v JS -->
+      </div>
+
+      <button id="btn-confirm-direction" class="btn-primary" style="margin-top:auto;" disabled>Vybrat tento směr pro první týden</button>
+    </section>
+
+    <!-- OBRAZOVKA 3: Dnešní malý pokus (Tunel & Semafor) -->
+    <section id="screen-today" class="screen" aria-labelledby="heading-today">
+      <h2 id="heading-today">Dnešní malý pokus</h2>
+      <p class="subtitle">Jeden bezpečný krok v reálném životě mimo obrazovku.</p>
+
+      <article class="experiment-card" id="today-experiment-display">
+        <div class="exp-badge-row">
+          <span class="exp-code" id="exp-code">EXP-01</span>
+          <span class="exp-time" id="exp-time">⏱️ 15 minut</span>
+        </div>
+        <h3 class="exp-title" id="exp-title">Bleskový náčrt nápadu na papír</h3>
+        <p class="exp-summary" id="exp-summary">Ověření, zda ti energii dává samotné vymýšlení nového konceptu z čisté vody.</p>
+
+        <!-- Výběr varianty pokusu (2, 5, 15 min) -->
+        <div class="variant-selector" id="variant-selector-group" role="tablist" aria-label="Varianty pokusu">
+          <button class="variant-btn" data-min="2" role="tab">⚡ 2 min</button>
+          <button class="variant-btn" data-min="5" role="tab">⏱️ 5 min</button>
+          <button class="variant-btn active" data-min="15" role="tab">🎯 15 min</button>
+        </div>
+
+        <div class="exp-instructions" id="exp-instructions">
+          Vezmi čistý papír a tužku. Během 15 minut navrhni koncept jedné věci, která by vyřešila drobný problém ve tvém okolí. Neřeš proveditelnost ani grafickou krásu, soustřeď se na nápad.
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <button id="btn-switch-experiment" class="btn-secondary" style="flex:1;">🔄 Vyměnit pokus</button>
+          <button id="btn-rest-today" class="btn-secondary" style="flex:1;">☕ Dnes odpočinek</button>
+        </div>
+      </article>
+
+      <!-- Sekce Semafor energie -->
+      <section class="semafor-box" aria-labelledby="heading-semafor">
+        <h3 id="heading-semafor" class="semafor-title">Večerní Semafor: Jak ti při tom bylo?</h3>
+        <div class="semafor-buttons" role="group" aria-label="Volba energie">
+          <button class="semafor-btn green" data-energy="energized" aria-label="Dodalo energii">
+            <span class="icon">🟢</span>
+            <span>Dodalo energii</span>
+          </button>
+          <button class="semafor-btn orange" data-energy="neutral" aria-label="Neutrální">
+            <span class="icon">🟡</span>
+            <span>Neutrální</span>
+          </button>
+          <button class="semafor-btn red" data-energy="drained" aria-label="Vyčerpalo nebo slepá ulička">
+            <span class="icon">🔴</span>
+            <span>Slepá ulička</span>
+          </button>
+        </div>
+
+        <label for="reflection-note" class="sr-only" style="font-size:12px; color:var(--text-muted);">Krátký postřeh (nepovinné):</label>
+        <textarea id="reflection-note" class="chat-input" style="height:60px;" placeholder="Co přesně fungovalo nebo drhlo? (nepovinné)"></textarea>
+
+        <button id="btn-save-reflection" class="btn-primary" disabled>Uložit reflexi do deníku</button>
+      </section>
+    </section>
+
+    <!-- OBRAZOVKA 4: Kalendář a historie (Matrix Level) -->
+    <section id="screen-calendar" class="screen" aria-labelledby="heading-calendar">
+      <h2 id="heading-calendar">Matice 14 dnů (Historie)</h2>
+      <p class="subtitle">Přehled tvých zkušeností, odpočinků a slepých uliček.</p>
+
+      <div class="matrix-grid" id="matrix-grid-container" role="grid" aria-label="Matice 14 dnů cesty">
+        <!-- Dny 1 až 14 se generují v JS -->
+      </div>
+
+      <div style="font-size:12px; color:var(--text-muted); display:flex; justify-content:space-between; margin-top:4px;">
+        <span>🟢 Dodalo energii</span>
+        <span>🟡 Neutrál</span>
+        <span>🔴 Slepá ulička</span>
+        <span>☕ Odpočinek</span>
+      </div>
+
+      <div class="day-detail-card" id="calendar-day-detail">
+        <strong>Klikni na kterýkoliv den výše</strong> pro zobrazení podrobností a zaznamenané reflexe.
+      </div>
+    </section>
+
+    <!-- OBRAZOVKA 5: Týdenní shrnutí a Karta průzkumníka -->
+    <section id="screen-summary" class="screen" aria-labelledby="heading-summary">
+      <h2 id="heading-summary">Karta průzkumníka</h2>
+      <p class="subtitle">Syntéza tvých skutečných zkušeností a ověřených směrů.</p>
+
+      <div id="summary-content" style="display:flex; flex-direction:column; gap:12px;">
+        <!-- Souhrn se generuje v JS -->
+      </div>
+    </section>
+
+    <!-- Spodní navigační lišta -->
+    <nav class="bottom-nav" aria-label="Hlavní navigace">
+      <button class="nav-item active" data-screen="screen-today" id="nav-today">
+        <span class="icon">🧭</span>
+        <span>Dnešní krok</span>
+      </button>
+      <button class="nav-item" data-screen="screen-calendar" id="nav-calendar">
+        <span class="icon">📅</span>
+        <span>Matice 14</span>
+      </button>
+      <button class="nav-item" data-screen="screen-summary" id="nav-summary">
+        <span class="icon">📜</span>
+        <span>Výsledky</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

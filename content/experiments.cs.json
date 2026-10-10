@@ -1,0 +1,723 @@
+[
+  {
+    "id": "exp-01",
+    "code": "EXP-01",
+    "title": "Bleskový náčrt nápadu na papír",
+    "summary": "Ověření, zda ti energii dává samotné vymýšlení nového konceptu z čisté vody.",
+    "instructions": "Vezmi čistý papír a tužku. Během 15 minut navrhni koncept jedné věci, která by vyřešila drobný problém ve tvém okolí. Neřeš proveditelnost ani grafickou krásu, soustřeď se na nápad.",
+    "estimatedMinutes": 15,
+    "tags": ["tvoreni", "vymysleni", "samostatne"],
+    "variants": [
+      {
+        "id": "exp-01-v2m",
+        "title": "Jeden titulek a myšlenka",
+        "instructions": "Napiš na papír jednou větou nápad na zlepšovák a podtrhni klíčové slovo.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-01-v5m",
+        "title": "Tři hrubé odrážky",
+        "instructions": "Načrtni název nápadu a 3 základní body, jak by fungoval.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-01-v15m",
+        "title": "Kreslené schéma na celou stranu",
+        "instructions": "Nakresli schéma s bublinami a šipkami, které propojí problém a tvé řešení.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-02",
+    "code": "EXP-02",
+    "title": "Tiché psaní bez cenzury",
+    "summary": "Zjištění, zda ti vyhovuje formulovat myšlenky do souvislého textu o samotě.",
+    "instructions": "Otevři prázdný dokument nebo poznámkový blok. Piš 15 minut v kuse o tématu, které tě v poslední době zaujalo. Nezastavuj se kvůli gramatice ani stylistice, jen zachycuj tok myšlenek.",
+    "estimatedMinutes": 15,
+    "tags": ["tvoreni", "text", "samostatne"],
+    "variants": [
+      {
+        "id": "exp-02-v2m",
+        "title//": "Tři silné myšlenky",
+        "title": "Tři silné věty",
+        "instructions": "Napiš 3 nepřerušované věty o tom, co tě dnes nejvíc zaměstnává v hlavě.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-02-v5m",
+        "title": "Jeden odstavec proudu vědomí",
+        "instructions": "Nastav si časovač na 5 minut a piš bez mazání jakýchkoliv slov.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-02-v15m",
+        "title": "Krátká mini-úvaha",
+        "instructions": "Napiš půlstránkovou úvahu s vlastním názorem na konkrétní odborné či životní téma.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-03",
+    "code": "EXP-03",
+    "title": "Hmatatelný prototyp z odpadu",
+    "summary": "Ověření, zda potřebuješ fyzický kontakt s materiálem a manuální tvarování.",
+    "instructions": "Najdi doma nebo v kanceláři kancelářské sponky, lepenku, papír nebo krabičku. Během 15 minut vytvoř jednoduchý fyzický model stojánku, držáku nebo záložky.",
+    "estimatedMinutes": 15,
+    "tags": ["tvoreni", "manualni", "fyzicke"],
+    "variants": [
+      {
+        "id": "exp-03-v2m",
+        "title": "Tvarování jedné sponky",
+        "instructions": "Ohni kancelářskou sponku do nového funkčního tvaru (stojánek, háček).",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-03-v5m",
+        "title": "Skládanka z jednoho papíru",
+        "instructions": "Slož origami krabičku nebo praktickou záložku do knihy.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-03-v15m",
+        "title": "Rychlý model z kartonu",
+        "instructions": "Rozstříhej starou krabici a sestav jednoduchý organizér na stůl.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-04",
+    "code": "EXP-04",
+    "title": "Fotografický detail všednosti",
+    "summary": "Zjištění, zda tě nabíjí vizuální kompozice a hledání neobvyklých úhlů pohledu.",
+    "instructions": "Vezmi mobil a během krátké procházky nebo po bytě vyfoť 5 záběrů stejného běžného předmětu z nečekaných úhlů a světel. Vyber 1 nejpůsobivější fotku.",
+    "estimatedMinutes": 15,
+    "tags": ["tvoreni", "vizualni", "pozorovani"],
+    "variants": [
+      {
+        "id": "exp-04-v2m",
+        "title": "Jeden makro detail",
+        "instructions": "Vyfoť zblízka zajímavou texturu materiálu na svém pracovním stole.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-04-v5m",
+        "title": "Tři hry se světlem",
+        "instructions": "Najdi v místnosti 3 zajímavé stíny a zachyť je na telefon.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-04-v15m",
+        "title": "Pěticí snímků kolem bloku",
+        "instructions": "Obejdi dům a vyfoť 5 architektonických nebo přírodních detailů.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-05",
+    "code": "EXP-05",
+    "title": "Vysvětlení složité věci jako pro dítě",
+    "summary": "Ověření radosti z didaktického zjednodušení a strukturování vědomostí.",
+    "instructions": "Vyber si koncept ze svého oboru, který lidé často nechápou. Napiš na papír jeho vysvětlení tak, aby mu porozuměl desetiletý školák, bez použití jediného cizího termínu.",
+    "estimatedMinutes": 15,
+    "tags": ["uceni", "didaktika", "zjednoduseni"],
+    "variants": [
+      {
+        "id": "exp-05-v2m",
+        "title": "Jedna trefná metafora",
+        "instructions": "Vymysli jednu přirovnávací metaforu pro složitý princip ze své práce.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-05-v5m",
+        "title": "Tříkrokový tahák",
+        "instructions": "Napiš 3 body vysvětlující základní pravidlo tvého oblíbeného tématu.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-05-v15m",
+        "title": "Mini-průvodce na jednu stranu",
+        "instructions": "Sestav jednoduchý ilustrovaný jednostránkový návod na řešení častého problému.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-06",
+    "code": "EXP-06",
+    "title": "Zvědavé čtení mimo vlastní obor",
+    "summary": "Zjištění, zda čerpáš mentální energii z nasávání nových cizích konceptů.",
+    "instructions": "Najdi článek nebo kapitolu z oboru, o kterém vůbec nic nevíš (např. mykologie, dějiny architektury, astrofyzika). Čti 15 minut a vypiš si 2 překvapivé myšlenky.",
+    "estimatedMinutes": 15,
+    "tags": ["uceni", "objevovani", "cetba"],
+    "variants": [
+      {
+        "id": "exp-06-v2m",
+        "title": "Jedno neznámé heslo na Wikipedii",
+        "instructions": "Přečti úvodní odstavec náhodného hesla na Wikipedii a zapamatuj si 1 fakt.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-06-v5m",
+        "title": "Abstrakt odborné studie",
+        "instructions": "Přečti shrnutí vědeckého článku z humanitního či technického oboru.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-06-v15m",
+        "title": "Kapitola z cizí knihy",
+        "instructions": "Přečti souvislý úsek textu z knihy mimo tvé profesní zaměření.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-07",
+    "code": "EXP-07",
+    "title": "Zpětná rekonstrukce cizí chyby",
+    "summary": "Ověření, zda tě baví analýza příčin a poučení z toho, proč věci selhaly.",
+    "instructions": "Vzpomeň si na projekt nebo rozhodnutí, které v minulosti krachlo. Sepiš na papír časovou osu: co byl spouštěč, kde nastala slepá ulička a co by zabralo příště.",
+    "estimatedMinutes": 15,
+    "tags": ["uceni", "analyza", "reflexe"],
+    "variants": [
+      {
+        "id": "exp-07-v2m",
+        "title": "Pojmenování hlavního bodu zlomu",
+        "instructions": "Napiš jednou větou, v jakém momentu se nepovedený plán zvrhnul.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-07-v5m",
+        "title": "Tři lekce do budoucna",
+        "instructions": "Vypiš 3 konkrétní varovné signály, na které si příště dát pozor.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-07-v15m",
+        "title": "Post-mortem rozbor",
+        "instructions": "Sestav strukturovanou tabulku: Předpoklad vs. Realita vs. Poučení.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-08",
+    "code": "EXP-08",
+    "title": "Mikro-lekce pro jednoho posluchače",
+    "summary": "Ověření motivace učit druhé v živém osobním kontaktu.",
+    "instructions": "Během dne vysvětli partnerovi, kolegovi nebo kamarádovi jednu zajímavost, na kterou jsi nedávno narazil/a. Sleduj, jak se cítíš, když vidíš jeho reakci a pochopení.",
+    "estimatedMinutes": 15,
+    "tags": ["uceni", "kontakt", "predavani"],
+    "variants": [
+      {
+        "id": "exp-08-v2m",
+        "title": "Zpráva s jedním tipem",
+        "instructions": "Pošli známému krátkou zprávu s jedním ověřeným praktickým trikem.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-08-v5m",
+        "title": "Krátké sdílení u kávy",
+        "instructions": "Při setkání u kávy popiš v 5 minutách jeden princip, který ti pomohl.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-08-v15m",
+        "title": "Názorná ukázka postupu",
+        "instructions": "Ukáž někomu přímo na obrazovce nebo papíře, jak efektivněji vyřešit úkon.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-09",
+    "code": "EXP-09",
+    "title": "Vyčištění jednoho úzkého hrdla procesu",
+    "summary": "Zjištění, zda ti přináší uspokojení optimalizace a odstraňování zbytečných kroků.",
+    "instructions": "Vyber si jednu běžnou denní rutinu (příprava odchodu z domu, správa doručené pošty, ukládání souborů). Zmapuj zbytečné mezikroky a jeden z nich trvale zruš.",
+    "estimatedMinutes": 15,
+    "tags": ["reseni", "procesy", "organizace"],
+    "variants": [
+      {
+        "id": "exp-09-v2m",
+        "title": "Odstranění jednoho zbytečného kliku",
+        "instructions": "Vytvoř si klávesovou zkratku nebo záložku na často hledanou stránku.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-09-v5m",
+        "title": "Pravidlo jednoho šuplíku",
+        "instructions": "Vyřaď z pracovního stolu 5 předmětů, které při práci jen překážejí.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-09-v15m",
+        "title": "Zjednodušení digitální složky",
+        "instructions": "Přeorganizuj chaotickou složku se soubory do jednoduché struktury 3 kategorií.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-10",
+    "code": "EXP-10",
+    "title": "Dotažení jednoho odloženého restu",
+    "summary": "Ověření energie z dokončování a uzavírání otevřených smyček oproti vymýšlení nového.",
+    "instructions": "Vyber jeden drobný úkol, který odkládáš déle než 14 dní (např. přišít knoflík, zaplatit složenku, odpovědět na starý e-mail). Věnuj 15 minut jeho definitivnímu dokončení.",
+    "estimatedMinutes": 15,
+    "tags": ["reseni", "dokoncovani", "disciplina"],
+    "variants": [
+      {
+        "id": "exp-10-v2m",
+        "title": "Rychlé smazání restu",
+        "instructions": "Rozhodni se jeden odložený úkol definitivně škrtnout bez výčitek.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-10-v5m",
+        "title": "Jednoduchá odpověď na e-mail",
+        "instructions": "Napiš krátkou třívětou odpověď na zprávu, která ti leží v doručené poště.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-10-v15m",
+        "title": "Kompletní uzavření restu",
+        "instructions": "Dotáhni vybraný mikro-úkol do úplného konce a vyhoď související papíry.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-11",
+    "code": "EXP-11",
+    "title": "Oprava drobné nefunkční věci",
+    "summary": "Zjištění, zda ti dává smysl uvádět poškozené věci zpět do provozu.",
+    "instructions": "Najdi v domácnosti nebo kanceláři předmět, který drhne, vrže nebo se viklá. Použij šroubovák, mazadlo nebo lepidlo a věnuj 15 minut jeho opravení.",
+    "estimatedMinutes": 15,
+    "tags": ["reseni", "manualni", "oprava"],
+    "variants": [
+      {
+        "id": "exp-11-v2m",
+        "title": "Promazání jednoho pantu",
+        "instructions": "Kápni olej nebo silikon na vrzající dveře či židli.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-11-v5m",
+        "title": "Dotažení uvolněného šroubu",
+        "instructions": "Dotáhni uvolněnou úchytku nebo nohu u stolu.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-11-v15m",
+        "title": "Kompletní slepení či seřízení",
+        "instructions": "Očisti a slep rozbitý předmět nebo seřiď brzdící mechanismus.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-12",
+    "code": "EXP-12",
+    "title": "Sestavení kontrolního seznamu (checklistu)",
+    "summary": "Ověření, zda tě nabíjí systematizace a prevence budoucích chyb pro sebe i ostatní.",
+    "instructions": "Vyber aktivitu, u které se snadno na něco zapomene (balení na víkend, spuštění prezentace, měsíční uzávěrka). Sestav přesný kontrolní seznam maximálně o 7 krocích.",
+    "estimatedMinutes": 15,
+    "tags": ["reseni", "systematizace", "checklist"],
+    "variants": [
+      {
+        "id": "exp-12-v2m",
+        "title": "Kritické 3 body před odchodem",
+        "instructions": "Napiš 3 nejdůležitější položky, které musíš zkontrolovat před odjezdem.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-12-v5m",
+        "title": "Pětipoložkový kapesní tahák",
+        "instructions": "Sestav 5 bodů pro rutinní pracovní postup na kartičku do peněženky.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-12-v15m",
+        "title": "Standardizovaný procesní checklist",
+        "instructions": "Vytvoř digitální šablonu s checkboxy pro opakující se složitější úkol.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-13",
+    "code": "EXP-13",
+    "title": "Aktivní naslouchání bez rad a skákání do řeči",
+    "summary": "Ověření energie ze samotné lidské přítomnosti a empatie bez nutnosti mentorovat.",
+    "instructions": "Při rozhovoru s kolegou nebo blízkým člověkem se 15 minut soustřeď pouze na to, abys pozorně naslouchal/a. Nepředkládej žádná řešení ani své příhody, pouze parafrázuj a ptej se na jeho prožívání.",
+    "estimatedMinutes": 15,
+    "tags": ["kontakt", "empatie", "naslouchani"],
+    "variants": [
+      {
+        "id": "exp-13-v2m",
+        "title": "Jedna doplňující otázka navíc",
+        "instructions": "Místo vlastní historky se zeptej: 'A jak jsi se v té chvíli cítil/a?'",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-13-v5m",
+        "title": "Pětiminutový prostor pro druhého",
+        "instructions": "Nech druhého mluvit 5 minut bez jediného přerušení, jen udržuj oční kontakt.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-13-v15m",
+        "title": "Vědomý rozhovor u kávy",
+        "instructions": "Věnuj celý rozhovor druhému člověku s cílem plně pochopit jeho pohled na věc.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-14",
+    "code": "EXP-14",
+    "title": "Společné vymýšlení v tandemu",
+    "summary": "Zjištění, zda tvořivou jiskru zapaluje dialog a ping-pong myšlenek s druhou osobou.",
+    "instructions": "Vezmi téma, které řešíš, a na 15 minut k němu přizvi kolegu či kamaráda. Pravidlo: na každý nápad reagujte formulací 'Ano, a navíc bychom mohli...'.",
+    "estimatedMinutes": 15,
+    "tags": ["kontakt", "spolutvoreni", "brainstorming"],
+    "variants": [
+      {
+        "id": "exp-14-v2m",
+        "title": "Jeden odraz myšlenky",
+        "instructions": "Nadhoď známému nápad a požádej ho o okamžitou první asociaci.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-14-v5m",
+        "title": "Pětiminutový bleskový ping-pong",
+        "instructions": "Střídejte se po jedné větě v rozvíjení bláznivého řešení problému.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-14-v15m",
+        "title": "Společná skicovací seance",
+        "instructions": "Kreslete s druhou osobou na jeden společný papír varianty řešení.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-15",
+    "code": "EXP-15",
+    "title": "Nezištné ocenění konkrétní práce",
+    "summary": "Ověření, jak na tebe působí vědomé posilování druhých lidí konkrétní zpětnou vazbou.",
+    "instructions": "Napiš nebo osobně řekni jednomu člověku poděkování za konkrétní věc, kterou udělal. Vyhni se obecným frázím; popiš přesný detail, který ti pomohl nebo tě inspiroval.",
+    "estimatedMinutes": 15,
+    "tags": ["kontakt", "zpetna-vazba", "oceneni"],
+    "variants": [
+      {
+        "id": "exp-15-v2m",
+        "title": "Krátká děkovná zpráva",
+        "instructions": "Pošli kolegovi zprávu: 'Díky za ten včerejší detail v reportu, hodně mi to pomohlo.'",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-15-v5m",
+        "title": "Osobní vyjádření uznání",
+        "instructions": "Zastav se u kolegy a popiš mu, v čem přesně vidíš jeho přínos pro tým.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-15-v15m",
+        "title": "Podrobná pozitivní reference",
+        "instructions": "Sepiš promyšlené doporučení nebo zhodnocení práce pro známého.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-16",
+    "code": "EXP-16",
+    "title": "Nabídka cílené pomoci na 15 minut",
+    "summary": "Zjištění, zda ti dodává energii role operativní podpory a ulehčení práce druhému.",
+    "instructions": "Všimni si, kdo ve tvém okolí nestíhá. Přijď za ním s konkrétní nabídkou: 'Mám teď 15 minut volno, můžu ti převzít tuhle jednu tabulku / přenést věci / udělat kávu?'.",
+    "estimatedMinutes": 15,
+    "tags": ["kontakt", "pomoc", "spoluprace"],
+    "variants": [
+      {
+        "id": "exp-16-v2m",
+        "title": "Rychlá otázka: Co ti uleví?",
+        "instructions": "Zeptej se přetíženého kolegy: 'Jakou jednu drobnost za tebe teď můžu udělat?'",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-16-v5m",
+        "title": "Převzetí drobného úkonu",
+        "instructions": "Vyřiď za někoho jeden telefonát, tisk materiálů nebo odnesení pošty.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-16-v15m",
+        "title": "Patnáctiminutová asistence",
+        "instructions": "Sedni si k němu a pomoz mu odškrtat urgentní balík mechanické práce.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-17",
+    "code": "EXP-17",
+    "title": "Kultivace jednoho sdíleného koutu",
+    "summary": "Ověření vztahu k fyzickému prostředí a péči o společný prostor bez vyzvání.",
+    "instructions": "Vyber si zanedbané místo ve sdíleném prostoru (kuchyňka v práci, chodba v domě, lavička v parku). Věnuj 15 minut jeho úklidu, srovnání nebo vylepšení bez očekávání potlesku.",
+    "estimatedMinutes": 15,
+    "tags": ["pece", "prostredi", "prostor"],
+    "variants": [
+      {
+        "id": "exp-17-v2m",
+        "title": "Zvednutí jednoho odpadku",
+        "instructions": "Seber pohozený papír na ulici nebo srovnej botník na chodbě.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-17-v5m",
+        "title": "Urovnání kávového koutku",
+        "instructions": "Utři linku kolem kávovaru a doplň čisté hrnky ve společné kuchyňce.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-17-v15m",
+        "title": "Kompletní proměna mikromísta",
+        "instructions": "Vyčisti a esteticky uspořádej jednu sdílenou poličku nebo stůl.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-18",
+    "code": "EXP-18",
+    "title": "Záchranná péče o rostlinu či zeleň",
+    "summary": "Zjištění, zda tě zklidňuje a dobíjí kontakt s živou přírodou a biologickým růstem.",
+    "instructions": "Prohlédni rostliny doma nebo v kanceláři. Vyber jednu vadnoucí, odstraň uschlé listy, nakypři hlínu, zalij ji a případně otři prach z listů.",
+    "estimatedMinutes": 15,
+    "tags": ["pece", "priroda", "zklidneni"],
+    "variants": [
+      {
+        "id": "exp-18-v2m",
+        "title": "Sklenice vody pro uschlou květinu",
+        "instructions": "Zalij žíznivou květinu a zkontroluj vlhkost půdy prstem.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-18-v5m",
+        "title": "Odstřižení uschlých částí",
+        "instructions": "Odstříhej nůžkami suché listy a otři povrch květináče.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-18-v15m",
+        "title": "Přesazení nebo generální lázeň",
+        "instructions": "Osprchuj rostlinu ve vaně nebo jí doplň čerstvý substrát.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-19",
+    "code": "EXP-19",
+    "title": "Nastavení ergonomického ticha na stole",
+    "summary": "Ověření, nakolik tvůj vnitřní klid závisí na řádu v bezprostředním pracovním poli.",
+    "instructions": "Ukliď svůj pracovní stůl tak, aby na něm nezůstalo nic kromě počítače a jednoho zápisníku. Všechny kabely, účtenky a hrnky ukliď mimo zorné pole. Pozoruj změnu dechu a soustředění.",
+    "estimatedMinutes": 15,
+    "tags": ["pece", "ergonomie", "minimalismus"],
+    "variants": [
+      {
+        "id": "exp-19-v2m",
+        "title": "Odnesení špinavého nádobí",
+        "instructions": "Odnes ze stolu všechny prázdné skleničky a talířky.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-19-v5m",
+        "title": "Srovnání plochy monitoru a stolu",
+        "instructions": "Otři prach z klávesnice a monitoru a srovnej podložku pod myš.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-19-v15m",
+        "title": "Kompletní ergonomický reset",
+        "instructions": "Nastav správnou výšku židle, srovnej monitor do úrovně očí a vyčisti celou desku stolu.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-20",
+    "code": "EXP-20",
+    "title": "Vědomá příprava jednoduchého jídla",
+    "summary": "Zjištění, zda ti manuální příprava výživy přináší pocit uzemnění a péče o tělo.",
+    "instructions": "Připrav si jednoduchou svačinu nebo čaj s plnou pozorností. Vypni telefon a televizi, vnímej vůně krájeného jablka, zvuk vařící vody a chuť prvního sousta.",
+    "estimatedMinutes": 15,
+    "tags": ["pece", "jidlo", "mindfulness"],
+    "variants": [
+      {
+        "id": "exp-20-v2m",
+        "title": "Pomalý doušek vody",
+        "instructions": "Nalij si sklenici vody a vypij ji pomalu s plným vnímáním teploty a doušků.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-20-v5m",
+        "title": "Čajový rituál bez mobilu",
+        "instructions": "Uvař si sypaný čaj a sleduj louhování lístků bez koukání do displeje.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-20-v15m",
+        "title": "Příprava čerstvého salátu",
+        "instructions": "Nakrájej čerstvou zeleninu a v klidu ji sněz bez dalších vjemů.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-21",
+    "code": "EXP-21",
+    "title": "Záměrně neznámá trasa domů",
+    "summary": "Ověření, zda tě probouzí opuštění automatických tras a poznávání neznámého prostředí.",
+    "instructions": "Při návratu z práce nebo pochůzky odboč do uličky, kterou nikdy nechodíš. Jdi pomalu, všímej si architektury domů, názvů firem a detailů, které na běžné trase míjíš.",
+    "estimatedMinutes": 15,
+    "tags": ["objevovani", "prostor", "vsimavost"],
+    "variants": [
+      {
+        "id": "exp-21-v2m",
+        "title": "Jeden jiný přechod či roh",
+        "instructions": "Přejdi ulici na opačném rohu než obvykle a podívej se na domy z jiné perspektivy.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-21-v5m",
+        "title": "Průzkum jednoho vnitrobloku",
+        "instructions": "Vejdi do otevřeného průchodu nebo vnitrobloku, kde jsi ještě nebyl/a.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-21-v15m",
+        "title": "Alternativní pěší okruh",
+        "instructions": "Projdi celou čtvrť oklikou s cílem objevit alespoň jeden neznámý obchod či park.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-22",
+    "code": "EXP-22",
+    "title": "Ochutnání zcela nové suroviny",
+    "summary": "Zjištění, nakolik tě stimuluje smyslová novost a vystoupení z chuťových stereotypů.",
+    "instructions": "Kup si v obchodě ovoce, zeleninu, koření nebo nápoj, který jsi nikdy v životě neochutnal/a. Doma ho prozkoumej, ochutnej a zapiš si slovní popis jeho chuti.",
+    "estimatedMinutes": 15,
+    "tags": ["objevovani", "smysly", "novost"],
+    "variants": [
+      {
+        "id": "exp-22-v2m",
+        "title": "Přivonění k neznámému koření",
+        "instructions": "Otevři v obchodě nebo doma kořenku s exotickým kořením a vnímej jeho vůni.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-22-v5m",
+        "title": "Jedno sousto neznámého sýra či ovoce",
+        "instructions": "Ochutnej jeden plátek neznámé suroviny se zavřenýma očima.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-22-v15m",
+        "title": "Porovnání dvou neobvyklých chutí",
+        "instructions": "Vyzkoušej dvě nové ingredience a porovnej jejich texturu a dozvuk na jazyku.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-23",
+    "code": "EXP-23",
+    "title": "Hloubkový ponor do jednoho náhodného objektu",
+    "summary": "Ověření badatelské zvídavosti: zjistit kompletní historii a princip obyčejné věci.",
+    "instructions": "Vyber obyčejnou věc na stole (kuličkové pero, zip na bundě, kávový filtr). Během 15 minut na internetu zjisti: kdo to vynalezl, jak se to vyrábí a co tomu předcházelo.",
+    "estimatedMinutes": 15,
+    "tags": ["objevovani", "badani", "historie"],
+    "variants": [
+      {
+        "id": "exp-23-v2m",
+        "title": "Rok vynálezu a jméno autora",
+        "instructions": "Vyhledej na mobilu, kdo a kdy vynalezl věc, kterou právě držíš v ruce.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-23-v5m",
+        "title": "Jedno video z výroby",
+        "instructions": "Najdi 3minutové video 'How it's made' o předmětu denní potřeby.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-23-v15m",
+        "title": "Článek o vývoji technologie",
+        "instructions": "Přečti si příběh technologického sporu nebo patentové války kolem daného vynálezu.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  },
+  {
+    "id": "exp-24",
+    "code": "EXP-24",
+    "title": "Poslech hudebního žánru, který běžně míjíš",
+    "summary": "Zjištění, jak reaguje tvůj mozek na neznámou estetiku a kulturní podněty.",
+    "instructions": "Pusť si do sluchátek žánr, kterému se běžně vyhýbáš (gregoriánský chorál, japonský ambient, bluegrass, jazz fusion). Poslouchej 15 minut v klidu bez přeskakování skladeb.",
+    "estimatedMinutes": 15,
+    "tags": ["objevovani", "hudba", "estetika"],
+    "variants": [
+      {
+        "id": "exp-24-v2m",
+        "title": "Jedna cizí melodie",
+        "instructions": "Poslechni si 2 minuty tradiční lidové hudby ze vzdáleného kontinentu.",
+        "estimatedMinutes": 2
+      },
+      {
+        "id": "exp-24-v5m",
+        "title": "Jedna celá instrumentální skladba",
+        "instructions": "Poslechni si celou jednu skladbu v neznámém žánru se zavřenýma očima.",
+        "estimatedMinutes": 5
+      },
+      {
+        "id": "exp-24-v15m",
+        "title": "Třískladbové minialbum",
+        "instructions": "Vyslechni blok tří skladeb a všímej si použitých nástrojů a rytmické struktury.",
+        "estimatedMinutes": 15
+      }
+    ],
+    "version": "2026-10-09"
+  }
+]
